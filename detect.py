@@ -142,10 +142,13 @@ def run(weights='weights/yolov5s.pt',  # model.pt path(s)
 
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
-                        label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
-                        plot_one_box(xyxy, im0, label=label, color=colors(c, True), line_thickness=line_thickness)
-                        if save_crop:
-                            save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+
+                        # 限定标注的类别
+                        if names[c] in ['person','train']:
+                            label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
+                            plot_one_box(xyxy, im0, label=label, color=colors(c, True), line_thickness=line_thickness)
+                            if save_crop:
+                                save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
 
             # Print time (inference + NMS)
             print(f'{s}Done. ({t2 - t1:.3f}s)')
@@ -187,13 +190,13 @@ def run(weights='weights/yolov5s.pt',  # model.pt path(s)
 def parse_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str, default='weights/yolov5l.pt', help='model.pt path(s)')
-    parser.add_argument('--source', type=str, default='/media/lcq/Data/modle_and_code/DataSet/0708pf', help='file/dir/URL/glob, 0 for webcam')
+    parser.add_argument('--source', type=str, default='D:/Code/DATASET/Rail2/test/images', help='file/dir/URL/glob, 0 for webcam')
     parser.add_argument('--imgsz', '--img', '--img-size', type=int, default=640, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.45, help='NMS IoU threshold')
     parser.add_argument('--max-det', type=int, default=1000, help='maximum detections per image')
     parser.add_argument('--device', default='', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
-    parser.add_argument('--view-img', action='store_true', help='show results')
+    parser.add_argument('--view-img', action='store_false', help='show results')
     parser.add_argument('--save-txt', action='store_true', help='save results to *.txt')
     parser.add_argument('--save-conf', action='store_true', help='save confidences in --save-txt labels')
     parser.add_argument('--save-crop', action='store_true', help='save cropped prediction boxes')

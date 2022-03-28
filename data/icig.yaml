@@ -1,0 +1,16 @@
+# train and val data as 1) directory: path/images/, 2) file: path/images.txt, or 3) list: [path1/images/, path2/images/]
+
+train: D:/Code/DATASET/ICIG2021/test
+val: 
+test: D:/Code/DATASET/ICIG2021/test
+
+# number of classes
+nc: 18
+
+# class names
+names: [ 'pinA_normal', 'screw_normal', 'pinB_miss',
+         'puller_normal', 'pinB_normal', 'pinD_latent',
+         'pinD_normal', 'puller_miss', 'pinC_normal',
+         'nut', 'screw_miss', 'pinA_miss',
+         'pinD_miss', 'nut_normal', 'pinA_latent',
+         'pinB_latent', 'pinC_miss', 'pinC_latent' ]
