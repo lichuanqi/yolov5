@@ -1,0 +1,16 @@
+# train and val data as 
+# 1) directory: path/images/, 
+# 2) file: path/images.txt, or 
+# 3) list: [path1/images/, path2/images/]
+
+path: D:/CodePost/Xray13/
+train: train/images/
+val: val/images/
+test: test/images/
+
+# number of classes
+nc: 13
+# class names
+names: ['laptop', 'portable_charger_2', 'mobile_phone', 'portable_charger_1',
+        'battery', 'pressure_tank', 'lighter', 'straight_knife', 'folding_knife',
+        'multi-tool_knife', 'utility_knife', 'Gun', 'Fireworks']
